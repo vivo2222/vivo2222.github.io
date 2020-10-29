@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+
+}
+#canvas{
+    background: rgb(59,125,59);
+    background: linear-gradient(0deg, rgba(59,125,59,1) 0%, rgba(0,0,0,1) 8%, rgba(64,64,64,1) 67%); 
+}
+#change-color{
+    background: rgb(59,125,59) !important;
+    background: linear-gradient(0deg, rgba(59,125,59,1) 0%, rgba(100,157,100,1) 46%, rgba(143,190,143,1) 75%) !important;
+}
+footer{
+    position: absolute; 
+    color: rgb(0, 125, 20);
+    width: unset!important;
+}
+@media (orientation: portrait) { 
+    body {
+      width:100vh;
+  
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+}
+@media only screen and (max-width: 812px) {
+    span{
+        font-size: 10px;
+    }
+    img{
+        width: 60px!important;
+    }
+}
