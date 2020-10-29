@@ -9,20 +9,21 @@
         href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inconsolata:wght@200&family=Roboto:wght@300&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Card</title>
 </head>
 
 <body>
     <canvas id="canvas"></canvas>
+    <canvas id="sub_canvas"></canvas>
     <div id="popup" class="hidden">
         <div class="popup">
-            <h3>Xin chào !!</h3>
-            <a class="close_popup" href="#">&times;</a>
+            <h3>Thật tuyệt !!</h3>
+            <a class="close_popup">&times;</a>
             <div class="popup_content">
-                Cảm ơn vì đã theo dõi hết câu chuyện mà tôi muốn kể, một câu chuyện cũ nhưng không lỗi thời về "những kỹ sư tâm hồn" - những người gieo hạt giống, những
-                mầm non tri thức cho nhân loại.
-                <p> Bây giờ, hãy thu táo - những thành quả mà họ "gieo trồng" được để gửi lời chúc đến cho những người, thầy người cô của chúng ta !<p>
+                Cảm ơn vì đã theo dõi hết câu chuyện mà tôi muốn kể, một câu chuyện cũ nhưng không lỗi thời về "những kỹ sư tâm hồn", đó chính là thầy cô của chúng ta.
+                <p> Bây giờ, hãy thu hoạch những quả táo, là thành quả mà họ "gieo trồng" được để gửi lời chúc đến các thầy, các cô nhân ngày 20/11<p>
             </div>
         </div>
     </div>
@@ -42,22 +43,30 @@
 
 </html>
 <script>
-    // screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
-
-    // if (screen.lockOrientationUniversal("landscape-primary")) {
-    //     alert("locked");
-    // }else{
-    //     alert("sory");
-    // }
     var canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    var sub_canvas = document.getElementById("sub_canvas");
+    sub_canvas.width = window.innerWidth/2;
+    sub_canvas.height = window.innerHeight/4;
 
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
+        var sub_ctx = sub_canvas.getContext("2d");
+
         var rand = Math.random;
 
         var greeting_word = "Nhân ngày 20/11,em xin chúc các thầy các cô lời chúc tốt đẹp nhất. Chúc các thầy cô hoàn thành nhiệm vụ cao cả của mình trong sự nghiệp TRĂM NĂM TRỒNG NGƯỜI, trong công cuộc đổi mới của đất nước. Em chân thành cám ơn các thầy cô!";
+        var story_line = {
+            "story_line1" : "Hôm nay tôi xin kể cho các bạn nghe về một nghề cao quý nhất trong những nghề cao quý. ",
+            "story_line2" : "Có những người dành cả đời để này để gieo trồng 'những hạt mầm tri thức'.",
+            "story_line3" : "Chăm bón mỗi ngày để mầm non ấy khỏe mạnh lớn lên.",
+            "story_line4" : "Luôn bên cạnh dõi theo," ,
+            "story_line5" : " 'uốn nắn' cho 'cây con' có hướng đi đúng đắn. ",
+            "story_line6" : "Và rồi dưới sự chăm sóc tận tình của 'người'", 
+            "story_line7" : "cái cây non dần 'lớn khôn', ",
+            "story_line8" : "vươn mình để kết trái."
+        };
         /**
          * people will walk to the middle when the browser have already loaded
          * use sprite image sheet to animate the man
@@ -86,7 +95,7 @@
         } else {
             move = 29;
             scale = 1.5;
-            timeScale = 1600;
+            timeScale = 3000;
             stopP = x - move * 7;
             d = 1.2;
             heightTree = 15;
@@ -97,7 +106,12 @@
         */
         var walkingImage = new Image();
         setTimeout(function () {
-            walkingImage.src = 'https://vivo2222.github.io/assets/img/man.png';
+            drawText(10, 40, story_line.story_line1, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            setTimeout(function(){
+                drawText(10, 40, story_line.story_line2, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+                sub_ctx.clearRect(0,0, sub_canvas.width, sub_canvas.height);
+            },6000);
+            walkingImage.src = 'assets/img/man.png';
             walkingImage.onload = function () {
                 drawWalkingPeople();
             }
@@ -121,6 +135,9 @@
          * branchLevel is the number of tre branch will grow
         */
         setTimeout(function () {
+            setTimeout(function(){
+                drawText(10, 40, story_line.story_line3, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            }, 2000);
             var i = 10;
             var loop1 = setInterval(function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -168,9 +185,16 @@
             ======== STEP 6: The man splints tree (right direction) ========
         */
         setTimeout(function () {
+            drawText(10, 40, story_line.story_line4, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            setTimeout(function(){
+                drawText(10, 40, story_line.story_line5, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            }, 2000);
+            setTimeout(function(){
+                drawText(10, 40, story_line.story_line6, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            }, 5000);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawSplintingPeople();
-        }, canvas.width + timeScale + 44 * 500);
+        }, canvas.width + timeScale + 45 * 500);
 
         /**
             ======== STEP 7: The tree grows into a big tree (Adult) ========
@@ -179,6 +203,7 @@
             j = 0;
             var time = 5 * scale;
             var decrease = 1;
+            
             var loop2 = setInterval(function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 if (j == branchLevel) {
@@ -201,6 +226,10 @@
             ======== STEP 8: Fruit trees (get achievements) ========
         */
         setTimeout(function () {
+            drawText(10, 40, story_line.story_line7, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            setTimeout(function(){
+                drawText(10, 40, story_line.story_line8, "Itim", 15,0,'grey', canvas.width, sub_ctx);
+            }, 2000);
             // var numOfApple = 30;
             // for(var i = 1; i <= numOfApple/6; i++){
             //     drawApple(50+15*i, 0.4 + i*0.1*rand());
@@ -239,7 +268,7 @@
             drawApple(102, 0.7, 4 * scale);
             drawApple(125, 0.7, 4 * scale);
             drawApple(115, 0.4, 4 * scale);
-        }, canvas.width + timeScale + 71 * 500);
+        }, canvas.width + timeScale + 73 * 500);
         setTimeout(function () {
             drawApple(45, 0.6, 5 * scale);
             drawApple(83, 0.8, 5 * scale);
@@ -252,7 +281,7 @@
             drawApple(102, 0.7, 5 * scale);
             drawApple(125, 0.7, 5 * scale);
             drawApple(115, 0.4, 5 * scale);
-        }, canvas.width + timeScale + 75 * 500);
+        }, canvas.width + timeScale + 77 * 500);
         setTimeout(function () {
             drawApple(45, 0.6, 6 * scale);
             drawApple(83, 0.8, 6 * scale);
@@ -265,12 +294,15 @@
             drawApple(102, 0.7, 6 * scale);
             drawApple(125, 0.7, 6 * scale);
             drawApple(115, 0.4, 6 * scale);
-        }, canvas.width + timeScale + 79 * 500);
+        }, canvas.width + timeScale + 81 * 500);
 
         /**
             ======== STEP 9: Harvest (receive greetings, thanks) ========
         */
         setTimeout(function () {
+            $('#sub_canvas').css({
+                display : 'none'
+            });
             $('#popup').css({
                 visibility: 'visible',
                 opacity: '1'
@@ -282,7 +314,7 @@
                 });
             });
             $('canvas').css({
-                cursor: "url('https://vivo2222.github.io/assets/img/picking_pole.png') 126 3,auto"
+                cursor: "url('/assets/img/picking_pole.png') 126 3,auto"
             });
             $('canvas').on('click', function (e) {
                 var p = getPosition(e);
@@ -302,13 +334,12 @@
                     drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
                     drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
                     setTimeout(function () {
-                        drawText(x, y / 10 + 80, greeting_word, "Dancing Script", 25, 2, 3 * canvas.width / 4 );
+                        drawText(x, y / 10 + 80, greeting_word, "Dancing Script", 25,0.5,'white', 3 * canvas.width / 4, ctx);
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.fillStyle = "white";
-                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50, 2, 3 * canvas.width / 4 );
+                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50,0.5, 'white', 3 * canvas.width / 4, ctx);
                             setTimeout(function () {
-                                drawRandFireworks();
                                 drawRandFireworks();
                                 drawRandFireworks();
                                 drawRandFireworks();
@@ -326,7 +357,6 @@
                                     || (p[1] < 3 * canvas.height / 10 && getColorOfPixel(p[0], p[1] + 30)[0] != 255)
                                     || (p[1] > 7 * canvas.height / 10 && getColorOfPixel(p[0], p[1] - 30)[0] != 255)) {
                                     drawDeFireworks(p[0], p[1]);
-                                    // console.log(getColorOfPixel(p[0], p[1]));
                                 }
                             });
                         }, canvas.width + timeScale + 25 * 500);
@@ -337,7 +367,7 @@
             });
         }, canvas.width + timeScale + 85 * 500);
 
-        function drawText(startX, startY, text, fontStyle, fontSize, textAlign, maxNumWordOfLine) {
+        function drawText(startX, startY, text, fontStyle, fontSize, textAlign, color, textW, canvasContext) {
             var startXN, startYN, textN, stepX, stepY, countEndLine;
             startXN = startX;
             startYN = startY;
@@ -349,23 +379,22 @@
             }
             stepY = 3 * fontSize;
             maxH = 2 * fontSize;
-            ctx.font = String(fontSize) + 'px ' + fontStyle;
+            canvasContext.font = String(fontSize) + 'px ' + fontStyle;
 
             var text_length = textN.length;
             var i = 0, p = 0, j = 1;
-            maxW = maxNumWordOfLine;
+            maxW = textW;
             countEndLine = 1;
-            ctx.fillStyle = 'white';
+            canvasContext.fillStyle = color;
 
             var textLoop = setInterval(function () {
                 if (i == text.length - countEndLine)
                     clearInterval(textLoop);
-                ctx.clearRect(x - x / d + fontSize * 2, startYN - fontSize, maxW, maxH);
-                // ctx.rect(x-x/d+fontSize*2,startYN-fontSize,maxW,maxH);
+                canvasContext.clearRect(startX - maxW*textAlign, startYN - fontSize, maxW, maxH);//x - x / d + fontSize * 2
+                // ctx.rect(startX - maxW*textAlign,startYN-fontSize,maxW,maxH);
                 // ctx.stroke();
-                // console.log(x-x/d+fontSize*2+","+startYN+","+maxW+","+maxH);
-                ctx.fillText(textN.substr(p, j), startXN - 20, startYN);
-                stepX = ctx.measureText(textN.charAt(j)).width / textAlign;
+                canvasContext.fillText(textN.substr(p, j), startXN, startYN);
+                stepX = canvasContext.measureText(textN.charAt(j)).width * textAlign;
                 if (textN.charAt(j - 1) == ',' || textN.charAt(j - 1) == '.' || (textN.charAt(j - 1) == " " && (j - 1) * (fontSize / 3) > maxW)) {
                     startXN = startX;
                     startYN += stepY;
@@ -637,9 +666,6 @@
             return [e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop];
 
         }
-        $('canvas').on('click', function (e) {
-            console.log(getPosition(e)[0] + ' ' + getPosition(e)[1]);
-        })
         function getColorOfPixel(x, y) {
             var dataColor = ctx.getImageData(x, y, 1, 1).data;
             return dataColor;
@@ -734,4 +760,5 @@
     } else {
         alert("Sorry, your browser does not support canvas! Please go to another browser to have the best experience!");
     }
+
 </script>
