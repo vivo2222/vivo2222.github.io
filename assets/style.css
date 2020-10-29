@@ -88,7 +88,7 @@ footer {
   color: rgb(0, 125, 20);
   width: unset !important;
 }
-
+/* 
 @media (orientation: portrait) {
   body {
     width: 100vh;
@@ -99,7 +99,7 @@ footer {
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
   }
-}
+} */
 @media only screen and (max-width: 812px) {
   span {
     font-size: 10px;
