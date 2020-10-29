@@ -15,6 +15,17 @@
 
 <body>
     <canvas id="canvas"></canvas>
+    <div id="popup" class="hidden">
+        <div class="popup">
+            <h3>Xin chào !!</h3>
+            <a class="close_popup" href="#">&times;</a>
+            <div class="popup_content">
+                Cảm ơn vì đã theo dõi hết câu chuyện mà tôi muốn kể, một câu chuyện cũ nhưng không lỗi thời về "những kỹ sư tâm hồn" - những người gieo hạt giống, những
+                mầm non tri thức cho nhân loại.
+                <p> Bây giờ, hãy thu táo - những thành quả mà họ "gieo trồng" được để gửi lời chúc đến cho những người, thầy người cô của chúng ta !<p>
+            </div>
+        </div>
+    </div>
     <footer style="bottom: 20px; right: 0; 
     display: flex; justify-content: flex-end;
     width: 100%; align-items: center; ">
@@ -51,7 +62,6 @@
          * people will walk to the middle when the browser have already loaded
          * use sprite image sheet to animate the man
         */
-        var timer;
         const widthFrame = 112;
         const heightFrame = 153;
         const x = canvas.width / 2;
