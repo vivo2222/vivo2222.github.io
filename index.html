@@ -283,11 +283,11 @@
                     drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
                     drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
                     setTimeout(function () {
-                        drawText(x, y / 10 + 80, greeting_word, "Dancing Script", 25);
+                        drawText(x, y / 10 + 80, greeting_word, "Dancing Script", 25, 2, 3 * canvas.width / 4 );
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.fillStyle = "white";
-                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50);
+                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50, 2, 3 * canvas.width / 4 );
                             setTimeout(function () {
                                 drawRandFireworks();
                             }, 3000);
@@ -314,7 +314,7 @@
             });
         }, canvas.width + timeScale + 85 * 500);
 
-        function drawText(startX, startY, text, fontStyle, fontSize) {
+        function drawText(startX, startY, text, fontStyle, fontSize, textAlign, maxNumWordOfLine) {
             var startXN, startYN, textN, stepX, stepY, countEndLine;
             startXN = startX;
             startYN = startY;
@@ -330,7 +330,7 @@
 
             var text_length = textN.length;
             var i = 0, p = 0, j = 1;
-            maxW = 3 * canvas.width / 4;
+            maxW = maxNumWordOfLine;
             countEndLine = 1;
             ctx.fillStyle = 'white';
 
@@ -342,7 +342,7 @@
                 // ctx.stroke();
                 // console.log(x-x/d+fontSize*2+","+startYN+","+maxW+","+maxH);
                 ctx.fillText(textN.substr(p, j), startXN - 20, startYN);
-                stepX = ctx.measureText(textN.charAt(j)).width / 2;
+                stepX = ctx.measureText(textN.charAt(j)).width / textAlign;
                 if (textN.charAt(j - 1) == ',' || textN.charAt(j - 1) == '.' || (textN.charAt(j - 1) == " " && (j - 1) * (fontSize / 3) > maxW)) {
                     startXN = startX;
                     startYN += stepY;
