@@ -271,7 +271,16 @@
             ======== STEP 9: Harvest (receive greetings, thanks) ========
         */
         setTimeout(function () {
-            alert("Click vào táo để thu quả ngọt nào");
+            $('#popup').css({
+                visibility: 'visible',
+                opacity: '1'
+            });
+            $('.close_popup').on('click', function(){
+                $('#popup').css({
+                    visibility: 'hidden',
+                    opacity: '0'
+                });
+            });
             $('canvas').css({
                 cursor: "url('https://vivo2222.github.io/assets/img/picking_pole.png') 126 3,auto"
             });
