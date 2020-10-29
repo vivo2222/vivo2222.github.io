@@ -87,7 +87,7 @@
         */
         var walkingImage = new Image();
         setTimeout(function () {
-            walkingImage.src = 'assets/img/man.png';
+            walkingImage.src = 'https://vivo2222.github.io/assets/img/man.png';
             walkingImage.onload = function () {
                 drawWalkingPeople();
             }
@@ -263,7 +263,7 @@
         setTimeout(function () {
             alert("Click vào táo để thu quả ngọt nào");
             $('canvas').css({
-                cursor: "url('/assets/img/picking_pole.png') 126 3,auto"
+                cursor: "url('https://vivo2222.github.io/assets/img/picking_pole.png') 126 3,auto"
             });
             $('canvas').on('click', function (e) {
                 var p = getPosition(e);
