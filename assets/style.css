@@ -76,7 +76,7 @@ body {
 }
 footer {
   position: absolute;
-  color: rgb(0, 125, 20);
+  color: grey;
   width: unset !important;
 }
 
