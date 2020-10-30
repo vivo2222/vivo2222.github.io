@@ -593,7 +593,7 @@
                 }
             } else {
                 if(Math.ceil(x_coord * move) == Math.ceil(x))
-                    ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move+16, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
+                    ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 else
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 timeCir++;
