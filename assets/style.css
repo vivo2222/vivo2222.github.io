@@ -90,7 +90,7 @@ footer {
     transform: rotate(-90deg);
   }
 }
-@media only screen and (max-width: 812) {
+@media only screen and (max-width: 812px) {
   span {
     font-size: 10px;
   }
