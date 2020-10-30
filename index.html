@@ -593,13 +593,14 @@
                 }
             } else {
                 console.log(x_coord);
-                if(stopP*move - x_coord * move > move/3){
+                if(stopP*move - x_coord * move >= 0 && stopP*move - x_coord * move < move/3){
                     console.log("1:"+ stopP*move+" "+x_coord * move + " " + timeCir);
                     x_coord++;
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-                    console.log("2:"+ stopP*move+" "+x_coord * move + " " + timeCir);
+
                 }
                 else if(stopP*move - x_coord * move < 0){
+                    console.log("2:"+ stopP*move+" "+x_coord * move + " " + timeCir);
                     x_coord--;
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                     
