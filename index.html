@@ -81,7 +81,6 @@
             move = 17;
             scale = 0.9;
             timeScale = 1800;
-            stopP = 8*(canvas.width / (2*move))/10;
             d = 1;
             heightTree = 15;
             branchLevel = 5;
@@ -89,15 +88,17 @@
             move = 19;
             scale = 1.2;
             timeScale = 1600;
-            stopP = 8*(canvas.width / (2*move))/10;
             d = 1.1;
             heightTree = 15;
             branchLevel = 6;
         } else {
-            move = 29;
+            if(canvas.width > 1024 && canvas.width <= 1280){
+                move = 28;
+            }else {
+                move = 30;
+            }
             scale = 1.5;
-            timeScale = 3000;
-            stopP = 8*(canvas.width / (2*move))/10;
+            timeScale = 4000;
             d = 1.2;
             heightTree = 15;
             branchLevel = 7;
@@ -572,7 +573,7 @@
         var x_coord = 0;
         var isFirstTime = 0;
         function drawWalkingPeople() {
-            if ((x_coord + 1) < stopP) {
+            if (x_coord*move < x - widthFrame*scale ){
                 if (timeCir1 < 10) {
                     ctx.drawImage(walkingImage, timeCir1 * widthFrame, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                     setTimeout(function () {
@@ -593,28 +594,7 @@
                     }, 10 * timeCir + 10);
                 }
             } else {
-                if(isFirstTime == 0){
-                    isFirstTime = 1;
-                    console.log(x_coord);
-                    if(stopP*move - x_coord * move >= 0){
-                        console.log("1:"+ stopP*move+" "+x_coord * move + " " + timeCir);
-                        x_coord++;
-                        ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-
-                    }else if(stopP*move - x_coord * move >= -move/3 && stopP*move - x_coord * move <0){
-                        console.log("3:"+ stopP*move+" "+x_coord * move + " " + timeCir);
-                        ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-
-                    }else if(stopP*move - x_coord * move < -move/3){
-                        console.log("2:"+ stopP*move+" "+x_coord * move + " " + timeCir);
-                        x_coord--;
-                        ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-
-                    }
-                    console.log(x_coord);
-                }else{
-                    ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-                }
+                ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 timeCir++;
             }
         }
