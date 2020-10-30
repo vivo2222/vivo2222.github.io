@@ -49,7 +49,7 @@
     canvas.height = window.innerHeight;
     var sub_canvas = document.getElementById("sub_canvas");
     sub_canvas.width = window.innerWidth;
-    sub_canvas.height = window.innerHeight/2;
+    sub_canvas.height = 2*window.innerHeight/3;
 
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
@@ -114,9 +114,9 @@
         */
         var walkingImage = new Image();
         setTimeout(function () {
-            drawText(20*scale, 20*scale, story_line.story_line1, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+            drawText(20*scale, sub_canvas.height/5 , story_line.story_line1, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             setTimeout(function(){
-                drawText(20*scale, 20*scale, story_line.story_line2, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line2, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
                 sub_ctx.clearRect(0,0, sub_canvas.width, sub_canvas.height);
             },6000);
             walkingImage.src = 'https://vivo2222.github.io/assets/img/man.png';
@@ -144,7 +144,7 @@
         */
         setTimeout(function () {
             setTimeout(function(){
-                drawText(20*scale, 20*scale, story_line.story_line3, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line3, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             }, 2000);
             var i = 10;
             var loop1 = setInterval(function () {
@@ -193,12 +193,12 @@
             ======== STEP 6: The man splints tree (right direction) ========
         */
         setTimeout(function () {
-            drawText(20*scale, 20*scale, story_line.story_line4, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+            drawText(20*scale, sub_canvas.height/5 , story_line.story_line4, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             setTimeout(function(){
-                drawText(20*scale, 20*scale, story_line.story_line5, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line5, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             }, 2000);
             setTimeout(function(){
-                drawText(20*scale, 20*scale, story_line.story_line6, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line6, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             }, 5000);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawSplintingPeople();
@@ -234,9 +234,9 @@
             ======== STEP 8: Fruit trees (get achievements) ========
         */
         setTimeout(function () {
-            drawText(20*scale, 20*scale, story_line.story_line7, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+            drawText(20*scale, sub_canvas.height/5 , story_line.story_line7, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             setTimeout(function(){
-                drawText(20*scale, 20*scale, story_line.story_line8, "Itim", 15,0,'rgb(232, 232, 232)', canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line8, "Itim", 15,0,'rgb(232, 232, 232)', sub_canvas.width, sub_ctx);
             }, 2000);
             // var numOfApple = 30;
             // for(var i = 1; i <= numOfApple/6; i++){
@@ -385,6 +385,10 @@
                 fontSize = 3 * fontSize / 5;
             } else if (canvas.width > 812 && canvas.width <= 1024) {
                 fontSize = 4 * fontSize / 5;
+            }else if(canvas.width > 1024 && canvas.width <= 1280){
+                fontSize = fontSize;
+            }else {
+                fontSize = 6 * fontSize/5;
             }
             stepY = 3 * fontSize;
             maxH = 2 * fontSize;
