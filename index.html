@@ -592,7 +592,7 @@
                     }, 10 * timeCir + 10);
                 }
             } else {
-                if(stopP*move - x_coord * move > move/2){
+                if(stopP*move - x_coord * move > move/3){
                     x_coord++;
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                     console.log( stopP*move+" "+x_coord * move);
