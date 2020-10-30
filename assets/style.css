@@ -52,8 +52,8 @@ body {
 }
 
 .popup h3 {
-  margin-top: 0;
-  color: #333;
+  margin: 10px 0;
+  color: rgb(20, 143, 119);
 }
 .popup .close_popup {
   position: absolute;
@@ -72,39 +72,22 @@ body {
 .popup .popup_content {
   max-height: 30%;
   overflow: auto;
+  font-size: 14px;
 }
-
-@media screen and (max-width: 700px) {
-  .box {
-    width: 70%;
-  }
-  .popup {
-    width: 70%;
-  }
-}
-
 footer {
   position: absolute;
   color: rgb(0, 125, 20);
   width: unset !important;
 }
-/* 
-@media (orientation: portrait) {
-  body {
-    width: 100vh;
 
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-  }
-} */
-@media only screen and (max-width: 812px) {
+@media only screen and (max-width: 768px) {
   span {
     font-size: 10px;
   }
   img {
     width: 60px !important;
+  }
+  .popup {
+    width: 70%;
   }
 }
