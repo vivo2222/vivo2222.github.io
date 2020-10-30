@@ -592,9 +592,11 @@
                     }, 10 * timeCir + 10);
                 }
             } else {
-//                 if(Math.ceil(x_coord * move) == Math.ceil(x))
-//                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-//                 else
+                if(Math.ceil(x_coord * move) == Math.ceil(x)){
+                    x_coord++;
+                    ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
+                }
+                else
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 console.log(x_coord * move+" "+ stopP*move);
                 timeCir++;
