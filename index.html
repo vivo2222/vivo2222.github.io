@@ -600,7 +600,7 @@
                     console.log("2:"+ stopP*move+" "+x_coord * move + " " + timeCir);
                 }
                 else if(stopP*move - x_coord * move < 0){
-                    count--;
+                    x_coord--;
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                     
                 }else{
