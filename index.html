@@ -94,7 +94,7 @@
             heightTree = 15;
             branchLevel = 6;
         } else {
-            move = 29;
+            move = 32;
             scale = 1.5;
             timeScale = 3000;
             stopP = 8*(canvas.width / (2*move))/10;
@@ -593,7 +593,7 @@
                 }
             } else {
 //                 if(Math.ceil(x_coord * move) == Math.ceil(x)){
-                    x_coord++;
+//                     x_coord++;
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
 //                 }
 //                 else
