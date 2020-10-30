@@ -88,7 +88,7 @@
             move = 19;
             scale = 1.2;
             timeScale = 1600;
-            d = 1.1;
+            d = 1;
             heightTree = 15;
             branchLevel = 6;
         } else {
@@ -96,7 +96,7 @@
                 move = 28;
                 scale = 1.5;
                 timeScale = 4000;
-                d = 1.2;
+                d = 1.1;
                 heightTree = 15;
                 branchLevel = 7;
             }else {
@@ -343,7 +343,7 @@
                     drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
                     drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
                     setTimeout(function () {
-                        drawText(x, canvas.height*scale/6, greeting_word, "Dancing Script", 25,0.5,'white', 3 * canvas.width / 4, ctx);
+                        drawText(x, canvas.height*scale/6, greeting_word, "Dancing Script", 25,0.5,'white', 4 * canvas.width / 5, ctx);
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.fillStyle = "white";
