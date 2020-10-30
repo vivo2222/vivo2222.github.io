@@ -94,14 +94,20 @@
         } else {
             if(canvas.width > 1024 && canvas.width <= 1280){
                 move = 28;
+                scale = 1.5;
+                timeScale = 4000;
+                d = 1.2;
+                heightTree = 15;
+                branchLevel = 7;
             }else {
-                move = 30;
+                move = 32;
+                scale = 1.5;
+                timeScale = 7000;
+                d = 1.3;
+                heightTree = 15;
+                branchLevel = 7;
             }
-            scale = 1.5;
-            timeScale = 4000;
-            d = 1.2;
-            heightTree = 15;
-            branchLevel = 7;
+            
         }
         /**
             ======== STEP 1: DRAW A WALKING MAN ========
