@@ -592,15 +592,18 @@
                     }, 10 * timeCir + 10);
                 }
             } else {
+                console.log(x_coord);
                 if(stopP*move - x_coord * move > move/3){
+                    
                     x_coord++;
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-                    console.log("1:"+ stopP*move+" "+x_coord * move);
+                    console.log("1:"+ stopP*move+" "+x_coord * move + " " + timeCir);
                 }
                 else{
                     ctx.drawImage(walkingImage, 0, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
-                    console.log("2:"+ stopP*move+" "+x_coord * move);
+                    console.log("2:"+ stopP*move+" "+x_coord * move + " " + timeCir);
                 }
+                console.log(x_coord);
                 timeCir++;
             }
         }
