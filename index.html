@@ -48,8 +48,8 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var sub_canvas = document.getElementById("sub_canvas");
-    sub_canvas.width = window.innerWidth/2;
-    sub_canvas.height = window.innerHeight/4;
+    sub_canvas.width = window.innerWidth;
+    sub_canvas.height = window.innerHeight/2;
 
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
@@ -74,7 +74,7 @@
         */
         const widthFrame = 112;
         const heightFrame = 153;
-        const x = canvas.width / 2;
+        const x = canvas.width / 2 + 10;
         const y = canvas.height - 20;
         var move, scale, timeScale, d, heightTree, branchLevel;
         if (canvas.width <= 812) {
