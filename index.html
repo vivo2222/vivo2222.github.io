@@ -323,8 +323,9 @@
                 if ((colorOfPixel[0] >= 120) && colorOfPixel[1] == 0 && colorOfPixel[2] == 0) {
                     $('canvas').css({
                         cursor: "text",
-                        background: 'rgb(238,174,202)',
-                        background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
+                        background: "#BBD2C5",
+                        background: "-webkit-linear-gradient(to top, #292E49, #536976, #BBD2C5)",
+                        background: "linear-gradient(to top, #292E49, #536976, #BBD2C5)"
                     });
                     ctx.beginPath();
                     drawGrowingLine(x - x / d, y / 10 - 10 * d, canvas.width / 6, 0);
