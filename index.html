@@ -347,13 +347,17 @@
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.fillStyle = "white";
+                            ctx.shadowOffsetX = 1;
+                            ctx.shadowOffsetY = 2;
+                            ctx.shadowBlur = 3;
+                            ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
                             drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50,0.5, 'white', 3 * canvas.width / 4, ctx);
                             setTimeout(function () {
                                 drawRandFireworks();
                                 drawRandFireworks();
                                 drawRandFireworks();
                                 drawRandFireworks();
-                            }, 3000);
+                            }, 2700);
                             $('canvas').css({
                                 cursor: "crosshair"
                             });
