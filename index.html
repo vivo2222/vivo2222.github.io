@@ -9,7 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inconsolata:wght@200&family=Roboto:wght@300&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Card</title>
 </head>
@@ -22,8 +22,11 @@
             <h3>Thật tuyệt !!</h3>
             <a class="close_popup">&times;</a>
             <div class="popup_content">
-                Cảm ơn vì đã theo dõi hết câu chuyện mà tôi muốn kể, một câu chuyện cũ nhưng không lỗi thời về "những kỹ sư tâm hồn", đó chính là thầy cô của chúng ta.
-                <p> Bây giờ, hãy thu hoạch những quả táo, là thành quả mà họ "gieo trồng" được để gửi lời chúc đến các thầy, các cô nhân ngày 20/11<p>
+                Cảm ơn vì đã theo dõi hết câu chuyện mà tôi muốn kể, một câu chuyện cũ nhưng không lỗi thời về "những kỹ
+                sư tâm hồn", đó chính là thầy cô của chúng ta.
+                <p> Bây giờ, hãy thu hoạch những quả táo, là thành quả mà họ "gieo trồng" được để gửi lời chúc đến các
+                    thầy, các cô nhân ngày 20/11
+                <p>
             </div>
         </div>
     </div>
@@ -43,17 +46,17 @@
 
 </html>
 <script>
-//     screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+    //     screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
     var canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var sub_canvas = document.getElementById("sub_canvas");
     sub_canvas.width = window.innerWidth;
-    sub_canvas.height = 2*window.innerHeight/3;
-    const textStoryColor = 'rgb(30, 30, 30)'; 
-    const textGreetingColor = 'rgb(255, 255, 255)'; 
+    sub_canvas.height = 2 * window.innerHeight / 3;
+    const textStoryColor = 'rgb(30, 30, 30)';
+    const textGreetingColor = 'rgb(255, 255, 255)';
     const fireworksColor = 'rgb(0,255,255)';
-    const leafTreeColor = 'rgb(0,255,0);
+    const leafTreeColor = 'rgb(0,255,0)';
     const rightLeafAppleColor = 'rgb(27, 109, 45)';
     const leftLeafAppleColor = 'rgb(0, 81, 0)';
     const textGreetingColor = 'rgb(255,255,255)';
@@ -65,14 +68,14 @@
 
         var greeting_word = "Nhân ngày 20/11,em xin chúc các thầy các cô lời chúc tốt đẹp nhất. Chúc các thầy cô hoàn thành nhiệm vụ cao cả của mình trong sự nghiệp TRĂM NĂM TRỒNG NGƯỜI, trong công cuộc đổi mới của đất nước. Em chân thành cám ơn các thầy cô!";
         var story_line = {
-            "story_line1" : "Hôm nay tôi xin kể cho các bạn nghe về một nghề cao quý nhất trong những nghề cao quý. ",
-            "story_line2" : "Có những người dành cả đời để này để gieo trồng 'những hạt mầm tri thức'.",
-            "story_line3" : "Chăm bón mỗi ngày để mầm non ấy khỏe mạnh lớn lên.",
-            "story_line4" : "Luôn bên cạnh dõi theo," ,
-            "story_line5" : " 'uốn nắn' cho 'cây con' có hướng đi đúng đắn. ",
-            "story_line6" : "Và rồi dưới sự chăm sóc tận tình của 'người'", 
-            "story_line7" : "cái cây non dần 'lớn khôn', ",
-            "story_line8" : "vươn mình để kết trái."
+            "story_line1": "Hôm nay tôi xin kể cho các bạn nghe về một nghề cao quý nhất trong những nghề cao quý. ",
+            "story_line2": "Có những người dành cả đời để này để gieo trồng 'những hạt mầm tri thức'.",
+            "story_line3": "Chăm bón mỗi ngày để mầm non ấy khỏe mạnh lớn lên.",
+            "story_line4": "Luôn bên cạnh dõi theo,",
+            "story_line5": " 'uốn nắn' cho 'cây con' có hướng đi đúng đắn. ",
+            "story_line6": "Và rồi dưới sự chăm sóc tận tình của 'người'",
+            "story_line7": "cái cây non dần 'lớn khôn', ",
+            "story_line8": "vươn mình để kết trái."
         };
         /**
          * people will walk to the middle when the browser have already loaded
@@ -98,14 +101,14 @@
             heightTree = 15;
             branchLevel = 6;
         } else {
-            if(canvas.width > 1024 && canvas.width <= 1280){
+            if (canvas.width > 1024 && canvas.width <= 1280) {
                 move = 28;
                 scale = 1.5;
                 timeScale = 4000;
                 d = 1.1;
                 heightTree = 15;
                 branchLevel = 7;
-            }else {
+            } else {
                 move = 35;
                 scale = 1.7;
                 timeScale = 6000;
@@ -113,18 +116,18 @@
                 heightTree = 16;
                 branchLevel = 7;
             }
-            
+
         }
         /**
             ======== STEP 1: DRAW A WALKING MAN ========
         */
         var walkingImage = new Image();
         setTimeout(function () {
-            drawText(20*scale, sub_canvas.height/5 , story_line.story_line1, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
-            setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line2, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
-                sub_ctx.clearRect(0,0, sub_canvas.width, sub_canvas.height);
-            },6000);
+            drawText(20 * scale, sub_canvas.height / 5, story_line.story_line1, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line2, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                sub_ctx.clearRect(0, 0, sub_canvas.width, sub_canvas.height);
+            }, 6000);
             walkingImage.src = 'https://vivo2222.github.io/assets/img/man.png';
             walkingImage.onload = function () {
                 drawWalkingPeople();
@@ -149,8 +152,8 @@
          * branchLevel is the number of tre branch will grow
         */
         setTimeout(function () {
-            setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line3, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line3, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
             var i = 10;
             var loop1 = setInterval(function () {
@@ -199,16 +202,16 @@
             ======== STEP 6: The man splints tree (right direction) ========
         */
         setTimeout(function () {
-            drawText(20*scale, sub_canvas.height/5 , story_line.story_line4, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
-            setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line5, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
+            drawText(20 * scale, sub_canvas.height / 5, story_line.story_line4, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line5, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
-            setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line6, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line6, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
             }, 5000);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawSplintingPeople();
-        }, canvas.width + timeScale + 49* 500);
+        }, canvas.width + timeScale + 49 * 500);
 
         /**
             ======== STEP 7: The tree grows into a big tree (Adult) ========
@@ -217,7 +220,7 @@
             j = 0;
             var time = 5 * scale;
             var decrease = 1;
-            
+
             var loop2 = setInterval(function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 if (j == branchLevel) {
@@ -240,9 +243,9 @@
             ======== STEP 8: Fruit trees (get achievements) ========
         */
         setTimeout(function () {
-            drawText(20*scale, sub_canvas.height/5 , story_line.story_line7, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
-            setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line8, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
+            drawText(20 * scale, sub_canvas.height / 5, story_line.story_line7, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line8, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
             // var numOfApple = 30;
             // for(var i = 1; i <= numOfApple/6; i++){
@@ -315,13 +318,13 @@
         */
         setTimeout(function () {
             $('#sub_canvas').css({
-                display : 'none'
+                display: 'none'
             });
             $('#popup').css({
                 visibility: 'visible',
                 opacity: '1'
             });
-            $('.close_popup').on('click', function(){
+            $('.close_popup').on('click', function () {
                 $('#popup').css({
                     visibility: 'hidden',
                     opacity: '0'
@@ -349,15 +352,15 @@
                     drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
                     drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
                     setTimeout(function () {
-                        drawText(x, canvas.height*scale/6, greeting_word, "Dancing Script", 25,0.5,textGreetingColor, 4 * canvas.width / 5, ctx);
+                        drawText(x, canvas.height * scale / 6, greeting_word, "Dancing Script", 25, 0.5, textGreetingColor, 4 * canvas.width / 5, ctx);
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            ctx.fillStyle = textGreetingColor ;
+                            ctx.fillStyle = textGreetingColor;
                             ctx.shadowOffsetX = 3;
                             ctx.shadowOffsetY = 3;
                             ctx.shadowBlur = 4;
                             ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50,0.5, textGreetingColor, 3 * canvas.width / 4, ctx);
+                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50, 0.5, textGreetingColor, 3 * canvas.width / 4, ctx);
                             setTimeout(function () {
                                 drawRandFireworks();
                                 drawRandFireworks();
@@ -371,7 +374,7 @@
                             $('canvas').on('click', function (e) {
                                 p = getPosition(e);
                                 //console.log('x: ' + p[0] + ',y: ' + p[1]);
-                                if (isAllowedDrawFireWorks(p[0],p[1])) {
+                                if (isAllowedDrawFireWorks(p[0], p[1])) {
                                     drawDeFireworks(p[0], p[1]);
                                 }
                             });
@@ -382,11 +385,11 @@
                 }
             });
         }, canvas.width + timeScale + 90 * 500);
-        function isAllowedDrawFireWorks(x, y){
+        function isAllowedDrawFireWorks(x, y) {
             return (x < canvas.width / 15 && getColorOfPixel(x + 30, y)[0] != 255)
-                    || (x > 14 * canvas.width / 15 && getColorOfPixel(x - 30, y)[0] != 255)
-                    || (y < 3 * canvas.height / 10 && getColorOfPixel(x, y + 30)[0] != 255)
-                    || (y > 7 * canvas.height / 10 && getColorOfPixel(x, y - 30)[0] != 255);
+                || (x > 14 * canvas.width / 15 && getColorOfPixel(x - 30, y)[0] != 255)
+                || (y < 3 * canvas.height / 10 && getColorOfPixel(x, y + 30)[0] != 255)
+                || (y > 7 * canvas.height / 10 && getColorOfPixel(x, y - 30)[0] != 255);
         }
         function drawText(startX, startY, text, fontStyle, fontSize, textAlign, color, textW, canvasContext) {
             var startXN, startYN, textN, stepX, stepY, countEndLine;
@@ -397,10 +400,10 @@
                 fontSize = 3 * fontSize / 5;
             } else if (canvas.width > 812 && canvas.width <= 1024) {
                 fontSize = 4 * fontSize / 5;
-            }else if(canvas.width > 1024 && canvas.width <= 1280){
+            } else if (canvas.width > 1024 && canvas.width <= 1280) {
                 fontSize = fontSize;
-            }else {
-                fontSize = 6 * fontSize/5;
+            } else {
+                fontSize = 6 * fontSize / 5;
             }
             stepY = 3 * fontSize;
             maxH = 2 * fontSize;
@@ -415,7 +418,7 @@
             var textLoop = setInterval(function () {
                 if (i == text.length - countEndLine)
                     clearInterval(textLoop);
-                canvasContext.clearRect(startX - maxW*textAlign, startYN - fontSize, maxW, maxH);//x - x / d + fontSize * 2
+                canvasContext.clearRect(startX - maxW * textAlign, startYN - fontSize, maxW, maxH);//x - x / d + fontSize * 2
                 // ctx.rect(startX - maxW*textAlign,startYN-fontSize,maxW,maxH);
                 // ctx.stroke();
                 canvasContext.fillText(textN.substr(p, j), startXN, startYN);
@@ -456,7 +459,7 @@
             ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
             ctx.fill();
             ctx.beginPath();
-            ctx.fillStyle = rightLeafAppleColor ;
+            ctx.fillStyle = rightLeafAppleColor;
             ctx.ellipse(startX - 3 * scale, startY - radius, radius / 3, 2 * radius / 3, 3 * Math.PI / 4, 0, 2 * Math.PI);
             ctx.fill();
             ctx.stroke();
@@ -595,7 +598,7 @@
         var x_coord = 0;
         var isFirstTime = 0;
         function drawWalkingPeople() {
-            if (x_coord*move < x - widthFrame*scale ){
+            if (x_coord * move < x - widthFrame * scale) {
                 if (timeCir1 < 10) {
                     ctx.drawImage(walkingImage, timeCir1 * widthFrame, 0, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                     setTimeout(function () {
@@ -722,18 +725,18 @@
             var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
             function drawRand() {
                 // console.log(l1);
-//                 if (l1 % 2 == 0) {
-//                     randCenterX = (canvas.width * scale / 15) * rand();
-//                     randCenterY = canvas.height * rand();
-//                 }
-//                 else {
-//                     randCenterX = 14 * canvas.width / 15 + (canvas.width / 15) * rand();
-//                     randCenterY = canvas.height * rand();
-//                 }
+                //                 if (l1 % 2 == 0) {
+                //                     randCenterX = (canvas.width * scale / 15) * rand();
+                //                     randCenterY = canvas.height * rand();
+                //                 }
+                //                 else {
+                //                     randCenterX = 14 * canvas.width / 15 + (canvas.width / 15) * rand();
+                //                     randCenterY = canvas.height * rand();
+                //                 }
                 randCenterX = canvas.width * rand();
                 randCenterY = canvas.height * rand();
                 randRadius = 20 * scale + 10 * rand();
-                if(isAllowedDrawFireWorks(randCenterX,randCenterY)){
+                if (isAllowedDrawFireWorks(randCenterX, randCenterY)) {
                     var i = 0, j;
                     l2 = setInterval(function () {
                         ctx.fillStyle = fireworksColor;
@@ -757,7 +760,7 @@
                         }
                         i += 1;
                     }, 10);
-                }else{
+                } else {
                     l1 = requestAnimationFrame(drawRand);
                 }
             }
