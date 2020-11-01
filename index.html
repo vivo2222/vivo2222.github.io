@@ -365,10 +365,7 @@
                             $('canvas').on('click', function (e) {
                                 p = getPosition(e);
                                 //console.log('x: ' + p[0] + ',y: ' + p[1]);
-                                if ((p[0] < canvas.width / 15 && getColorOfPixel(p[0] + 30, p[1])[0] != 255)
-                                    || (p[0] > 14 * canvas.width / 15 && getColorOfPixel(p[0] - 30, p[1])[0] != 255)
-                                    || (p[1] < 3 * canvas.height / 10 && getColorOfPixel(p[0], p[1] + 30)[0] != 255)
-                                    || (p[1] > 7 * canvas.height / 10 && getColorOfPixel(p[0], p[1] - 30)[0] != 255)) {
+                                if (isAllowedDrawFireWorks(p[0],p[1])) {
                                     drawDeFireworks(p[0], p[1]);
                                 }
                             });
@@ -379,7 +376,12 @@
                 }
             });
         }, canvas.width + timeScale + 90 * 500);
-
+        function isAllowedDrawFireWorks(x, y){
+            return (x < canvas.width / 15 && getColorOfPixel(x + 30, y)[0] != 255)
+                    || (x > 14 * canvas.width / 15 && getColorOfPixel(x - 30, y)[0] != 255)
+                    || (y < 3 * canvas.height / 10 && getColorOfPixel(x, y + 30)[0] != 255)
+                    || (y > 7 * canvas.height / 10 && getColorOfPixel(x, y - 30)[0] != 255);
+        }
         function drawText(startX, startY, text, fontStyle, fontSize, textAlign, color, textW, canvasContext) {
             var startXN, startYN, textN, stepX, stepY, countEndLine;
             startXN = startX;
@@ -714,39 +716,42 @@
             var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
             function drawRand() {
                 // console.log(l1);
-                if (l1 % 2 == 0) {
-                    randCenterX = (canvas.width * scale / 15) * rand();
-                    randCenterY = canvas.height * rand();
-                }
-                else {
-                    randCenterX = 14 * canvas.width / 15 + (canvas.width / 15) * rand();
-                    randCenterY = canvas.height * rand();
-                }
+//                 if (l1 % 2 == 0) {
+//                     randCenterX = (canvas.width * scale / 15) * rand();
+//                     randCenterY = canvas.height * rand();
+//                 }
+//                 else {
+//                     randCenterX = 14 * canvas.width / 15 + (canvas.width / 15) * rand();
+//                     randCenterY = canvas.height * rand();
+//                 }
+                randCenterX = canvas.width * rand();
+                randCenterY = canvas.height * rand();
                 randRadius = 20 * scale + 10 * rand();
-                var i = 0, j;
-                l2 = setInterval(function () {
-                    ctx.fillStyle = 'rgb(0,255,255)';
-                    ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
-                    if (i >= randRadius && l1 < 5000) {
+                if(isAllowedDrawFireWorks(randCenterX,randCenterY)){
+                    var i = 0, j;
+                    l2 = setInterval(function () {
+                        ctx.fillStyle = 'rgb(0,255,255)';
                         ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
-                        clearInterval(l2);
-                        l1 = requestAnimationFrame(drawRand);
-                    } else if (i >= randRadius && l1 >= 5000) {
-                        ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
-                        clearInterval(l2);
-                    } else {
-                        for (var j = 0; j < 35; j++) {
-                            ctx.beginPath();
-                            randEndX = randCenterX + i * Math.sin(j * 10 * Math.PI / 180);
-                            randEndY = randCenterY + i * Math.cos(j * 10 * Math.PI / 180);
-                            ctx.arc(randEndX, randEndY, 1, 0, 2 * Math.PI);
-                            ctx.fill();
-                            j++;
+                        if (i >= randRadius && l1 < 5000) {
+                            ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
+                            clearInterval(l2);
+                            l1 = requestAnimationFrame(drawRand);
+                        } else if (i >= randRadius && l1 >= 5000) {
+                            ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
+                            clearInterval(l2);
+                        } else {
+                            for (var j = 0; j < 35; j++) {
+                                ctx.beginPath();
+                                randEndX = randCenterX + i * Math.sin(j * 10 * Math.PI / 180);
+                                randEndY = randCenterY + i * Math.cos(j * 10 * Math.PI / 180);
+                                ctx.arc(randEndX, randEndY, 1, 0, 2 * Math.PI);
+                                ctx.fill();
+                                j++;
+                            }
                         }
-                    }
-                    i += 1;
-                }, 10);
-
+                        i += 1;
+                    }, 10);
+                }
             }
             l1 = requestAnimationFrame(drawRand);
             cancelAnimationFrame(drawRand);
