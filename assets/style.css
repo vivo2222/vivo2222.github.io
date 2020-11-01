@@ -78,7 +78,7 @@ background: linear-gradient(0deg, rgba(45,110,42,1) 0%, rgba(31,32,32,1) 8%, rgb
 }
 footer {
   position: absolute;
-  color: grey;
+  color: rgb(115, 146, 172);
   width: unset !important;
 }
 @media only screen and (max-width: 812px) {
