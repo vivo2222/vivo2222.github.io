@@ -50,7 +50,14 @@
     var sub_canvas = document.getElementById("sub_canvas");
     sub_canvas.width = window.innerWidth;
     sub_canvas.height = 2*window.innerHeight/3;
-
+    const textStoryColor,textGreetingColor, fireworksColor, leafTreeColor, rightLeafAppleColor, leftLeafAppleColor, textGreetingColor;
+    textStoryColor = 'rgb(30, 30, 30)'; 
+    textGreetingColor = 'rgb(255, 255, 255)'; 
+    fireworksColor = 'rgb(0,255,255)';
+    leafTreeColor = 'rgb(0,255,0);
+    rightLeafAppleColor = 'rgb(27, 109, 45)';
+    leftLeafAppleColor = 'rgb(0, 81, 0)';
+    textGreetingColor = 'rgb(255,255,255)';
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
         var sub_ctx = sub_canvas.getContext("2d");
@@ -114,9 +121,9 @@
         */
         var walkingImage = new Image();
         setTimeout(function () {
-            drawText(20*scale, sub_canvas.height/5 , story_line.story_line1, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+            drawText(20*scale, sub_canvas.height/5 , story_line.story_line1, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line2, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line2, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
                 sub_ctx.clearRect(0,0, sub_canvas.width, sub_canvas.height);
             },6000);
             walkingImage.src = 'https://vivo2222.github.io/assets/img/man.png';
@@ -144,7 +151,7 @@
         */
         setTimeout(function () {
             setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line3, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line3, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
             var i = 10;
             var loop1 = setInterval(function () {
@@ -193,12 +200,12 @@
             ======== STEP 6: The man splints tree (right direction) ========
         */
         setTimeout(function () {
-            drawText(20*scale, sub_canvas.height/5 , story_line.story_line4, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+            drawText(20*scale, sub_canvas.height/5 , story_line.story_line4, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line5, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line5, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
             setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line6, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line6, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             }, 5000);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawSplintingPeople();
@@ -234,9 +241,9 @@
             ======== STEP 8: Fruit trees (get achievements) ========
         */
         setTimeout(function () {
-            drawText(20*scale, sub_canvas.height/5 , story_line.story_line7, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+            drawText(20*scale, sub_canvas.height/5 , story_line.story_line7, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             setTimeout(function(){
-                drawText(20*scale, sub_canvas.height/5 , story_line.story_line8, "Itim", 15,0,'rgb(200, 200, 200)', sub_canvas.width, sub_ctx);
+                drawText(20*scale, sub_canvas.height/5 , story_line.story_line8, "Itim", 15,0,textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
             // var numOfApple = 30;
             // for(var i = 1; i <= numOfApple/6; i++){
@@ -343,15 +350,15 @@
                     drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
                     drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
                     setTimeout(function () {
-                        drawText(x, canvas.height*scale/6, greeting_word, "Dancing Script", 25,0.5,'white', 4 * canvas.width / 5, ctx);
+                        drawText(x, canvas.height*scale/6, greeting_word, "Dancing Script", 25,0.5,textGreetingColor, 4 * canvas.width / 5, ctx);
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            ctx.fillStyle = "white";
-                            ctx.shadowOffsetX = 1;
-                            ctx.shadowOffsetY = 2;
-                            ctx.shadowBlur = 3;
+                            ctx.fillStyle = textGreetingColor ;
+                            ctx.shadowOffsetX = 3;
+                            ctx.shadowOffsetY = 3;
+                            ctx.shadowBlur = 4;
                             ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50,0.5, 'white', 3 * canvas.width / 4, ctx);
+                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50,0.5, textGreetingColor, 3 * canvas.width / 4, ctx);
                             setTimeout(function () {
                                 drawRandFireworks();
                                 drawRandFireworks();
@@ -450,12 +457,12 @@
             ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
             ctx.fill();
             ctx.beginPath();
-            ctx.fillStyle = 'rgb(27, 109, 45)';
+            ctx.fillStyle = rightLeafAppleColor ;
             ctx.ellipse(startX - 3 * scale, startY - radius, radius / 3, 2 * radius / 3, 3 * Math.PI / 4, 0, 2 * Math.PI);
             ctx.fill();
             ctx.stroke();
             ctx.beginPath();
-            ctx.fillStyle = 'rgb(0, 81, 0)';
+            ctx.fillStyle = leftLeafAppleColor;
             ctx.ellipse(startX + 3 * scale, startY - radius, radius / 3, 2 * radius / 3, Math.PI / 4, 0, 2 * Math.PI);
             ctx.fill();
             ctx.stroke();
@@ -476,14 +483,14 @@
 
             ctx.lineCap = 'round';
             ctx.lineWidth = 5;
-            ctx.strokeStyle = 'green';
+            ctx.strokeStyle = leafTreeColor;
             ctx.quadraticCurveTo(firstEndX, firstEndY, secondEndX, secondEndY);
             ctx.stroke();
 
             var angleE = angle - Math.PI / 2;
             if (angle < Math.PI / 2) {
                 ctx.beginPath();
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = leafTreeColor;
                 ctx.ellipse(secondEndX, secondEndY, secondHeight / 4, secondHeight / 2, -angle, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
@@ -492,12 +499,12 @@
                 var dy = secondHeight * Math.cos(angleE) / 2;
                 var h = secondHeight * Math.sqrt(2) / 2;
                 ctx.beginPath();
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = leafTreeColor;
                 ctx.ellipse(secondEndX + dx, secondEndY - dy, secondHeight / 3, h, Math.PI / 4, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
                 ctx.beginPath();
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = leafTreeColor;
                 ctx.ellipse(secondEndX - dx, secondEndY + dy, secondHeight / 3, h, -Math.PI / 4, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
@@ -506,17 +513,17 @@
                 var dy = secondHeight * Math.cos(angleE) / 2;
                 var h = secondHeight * Math.sqrt(2) / 2;
                 ctx.beginPath();
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = leafTreeColor;
                 ctx.ellipse(secondEndX, secondEndY, secondHeight / 4, secondHeight / 2, -angle, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
                 ctx.beginPath();
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = leafTreeColor;
                 ctx.ellipse(secondEndX + dx, secondEndY - dy, secondHeight / 3, h, angleE - Math.PI / 4, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
                 ctx.beginPath();
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = leafTreeColor;
                 ctx.ellipse(secondEndX - dx, secondEndY + dy, secondHeight / 3, h, angleE + Math.PI / 4, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
@@ -700,7 +707,7 @@
                 if (newLength > length)
                     clearInterval(lineLoop);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.strokeStyle = "white";
+                ctx.strokeStyle = growingLineColor;
                 endX = startX + newLength * Math.cos(angle * Math.PI / 180);
                 endY = startY + newLength * Math.sin(angle * Math.PI / 180);
                 ctx.moveTo(startX, startY);
@@ -730,7 +737,7 @@
                 if(isAllowedDrawFireWorks(randCenterX,randCenterY)){
                     var i = 0, j;
                     l2 = setInterval(function () {
-                        ctx.fillStyle = 'rgb(0,255,255)';
+                        ctx.fillStyle = fireworksColor;
                         ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
                         if (i >= randRadius && l1 < 5000) {
                             ctx.clearRect(randCenterX - randRadius - 10, randCenterY - randRadius - 10, 3 * randRadius, 3 * randRadius);
@@ -751,6 +758,8 @@
                         }
                         i += 1;
                     }, 10);
+                }else{
+                    l1 = requestAnimationFrame(drawRand);
                 }
             }
             l1 = requestAnimationFrame(drawRand);
@@ -762,7 +771,7 @@
             randRadius = 20 * scale + 10 * rand();
             var i = 0, j;
             l = setInterval(function () {
-                ctx.fillStyle = 'rgb(0,255,255)';
+                ctx.fillStyle = fireworksColor;
                 ctx.clearRect(centerX - randRadius - 10, centerY - randRadius - 10, 3 * randRadius, 3 * randRadius);
                 if (i > randRadius) {
                     ctx.clearRect(centerX - randRadius - 10, centerY - randRadius - 10, 3 * randRadius, 3 * randRadius);
