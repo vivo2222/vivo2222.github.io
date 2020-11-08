@@ -247,20 +247,6 @@
             setTimeout(function () {
                 drawText(20 * scale, sub_canvas.height / 5, story_line.story_line8, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
             }, 2000);
-            // var numOfApple = 30;
-            // for(var i = 1; i <= numOfApple/6; i++){
-            //     drawApple(50+15*i, 0.4 + i*0.1*rand());
-            //     drawApple(55+15*i, 0.6 + i*0.1*rand());
-            // }
-            // for(var i = 1; i <= numOfApple/6; i++){
-            //     drawApple(40+15*i, 0.6 + i*0.1*rand());
-            //     drawApple(45+15*i, 0.4 + i*0.1*rand());
-            // }
-            // for(var i = 1; i <= numOfApple/6; i++){
-            //     drawApple(50+15*i, 0.3 + i*0.1*rand());
-            //     drawApple(45+15*i, 0.6 + i*0.1*rand());
-            // }
-            // ctx.beginPath();
             drawApple(45, 0.6, 3 * scale);
             drawApple(83, 0.8, 3 * scale);
             drawApple(50, 0.5, 3 * scale);
@@ -370,18 +356,14 @@
                             $('canvas').css({
                                 cursor: "crosshair"
                             });
-                            // console.log('x1: '+ canvas.width/15 + ',x2: '+ 14*canvas.width/15 + ', y1:' + canvas.height/10+', y2: '+ 9*canvas.height/10);
                             $('canvas').on('click', function (e) {
                                 p = getPosition(e);
-                                //console.log('x: ' + p[0] + ',y: ' + p[1]);
                                 if (isAllowedDrawFireWorks(p[0], p[1])) {
                                     drawDeFireworks(p[0], p[1]);
                                 }
                             });
                         }, canvas.width + timeScale + 25 * 500);
                     }, 5 * 500);
-                    // }else{
-                    // $('.box').css('display','none');
                 }
             });
         }, canvas.width + timeScale + 90 * 500);
@@ -419,8 +401,6 @@
                 if (i == text.length - countEndLine)
                     clearInterval(textLoop);
                 canvasContext.clearRect(startX - maxW * textAlign, startYN - fontSize, maxW, maxH);//x - x / d + fontSize * 2
-                // ctx.rect(startX - maxW*textAlign,startYN-fontSize,maxW,maxH);
-                // ctx.stroke();
                 canvasContext.fillText(textN.substr(p, j), startXN, startYN);
                 stepX = canvasContext.measureText(textN.charAt(j)).width * textAlign;
                 if (textN.charAt(j - 1) == ',' || textN.charAt(j - 1) == '.' || (textN.charAt(j - 1) == " " && (j - 1) * (fontSize / 3) > maxW)) {
@@ -437,12 +417,6 @@
         }
 
         function drawApple(angle, distance, radius) {
-            // ctx.beginPath();
-            // ctx.lineWidth = '3';
-            // ctx.strokeStyle = 'red';
-            // ctx.arc(x, y - heightTree*(branchLevel+4), heightTree*(branchLevel+4)*4, -Math.PI/4, -3*Math.PI/4, true);
-            // ctx.arc(x, y - heightTree*(branchLevel+4), 3, 0, 2*Math.PI, true);
-            // ctx.stroke();
             ctx.beginPath();
             var startX, startY;
             if (distance <= 0.8) {
@@ -724,15 +698,6 @@
 
             var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
             function drawRand() {
-                // console.log(l1);
-                //                 if (l1 % 2 == 0) {
-                //                     randCenterX = (canvas.width * scale / 15) * rand();
-                //                     randCenterY = canvas.height * rand();
-                //                 }
-                //                 else {
-                //                     randCenterX = 14 * canvas.width / 15 + (canvas.width / 15) * rand();
-                //                     randCenterY = canvas.height * rand();
-                //                 }
                 randCenterX = canvas.width * rand();
                 randCenterY = canvas.height * rand();
                 randRadius = 20 * scale + 10 * rand();
