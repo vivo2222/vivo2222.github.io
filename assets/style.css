@@ -7,15 +7,13 @@ body {
   overflow: hidden;
 }
 #canvas {
-/*   background: rgb(59, 125, 59);
+  background: rgb(45, 110, 42);
   background: linear-gradient(
     0deg,
-    rgba(59, 125, 59, 1) 0%,
-    rgba(0, 0, 0, 1) 8%,
-    rgba(64, 64, 64, 1) 67%
-  ); */
-   background: rgb(45,110,42);
-background: linear-gradient(0deg, rgba(45,110,42,1) 0%, rgba(31,32,32,1) 8%, rgba(118,149,176,1) 100%); 
+    rgba(45, 110, 42, 1) 0%,
+    rgba(31, 32, 32, 1) 8%,
+    rgba(118, 149, 176, 1) 100%
+  );
 }
 #sub_canvas {
   position: absolute;
@@ -69,7 +67,7 @@ background: linear-gradient(0deg, rgba(45,110,42,1) 0%, rgba(31,32,32,1) 8%, rgb
 }
 .popup .close_popup:hover {
   color: #06d85f;
-  cursor : pointer;
+  cursor: pointer;
 }
 .popup .popup_content {
   max-height: 30%;

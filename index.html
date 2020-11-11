@@ -46,13 +46,13 @@
 
 </html>
 <script>
-    //     screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
     var canvas = document.getElementById("canvas");
+    var sub_canvas = document.getElementById("sub_canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    var sub_canvas = document.getElementById("sub_canvas");
     sub_canvas.width = window.innerWidth;
     sub_canvas.height = 2 * window.innerHeight / 3;
+
     const textStoryColor = 'rgb(30, 30, 30)';
     const textGreetingColor = 'rgb(255, 255, 255)';
     const fireworksColor = 'rgb(0,255,255)';
@@ -60,6 +60,8 @@
     const rightLeafAppleColor = 'rgb(27, 109, 45)';
     const leftLeafAppleColor = 'rgb(0, 81, 0)';
     const growingLineColor = 'rgb(255, 255, 255)';
+    const treeAdultShadow = 'rgb(241, 255, 94)';
+
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
         var sub_ctx = sub_canvas.getContext("2d");
@@ -128,7 +130,7 @@
                 drawText(20 * scale, sub_canvas.height / 5, story_line.story_line2, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
                 sub_ctx.clearRect(0, 0, sub_canvas.width, sub_canvas.height);
             }, 6000);
-            walkingImage.src = 'https://vivo2222.github.io/assets/img/man.png';
+            walkingImage.src = '/assets/img/man.png';
             walkingImage.onload = function () {
                 drawWalkingPeople();
             }
@@ -190,7 +192,7 @@
                 }
                 /** dir = 0 tilts the tree in one direction */
                 for (var i = 0; i < time; i++) {
-                    drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0);
+                    drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0, false);
                     drawWalkingPeople();
                 }
                 h += 5;
@@ -220,7 +222,7 @@
             j = 0;
             var time = 5 * scale;
             var decrease = 1;
-
+            var isShadow = false;
             var loop2 = setInterval(function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 if (j == branchLevel) {
@@ -228,9 +230,11 @@
                 }
                 /** draw 2 tree to avoid the case the tree grows in only 1 dir*/
                 for (var i = 0; i < time; i++) {
-                    drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5);
-                    drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5);
-
+                    if(j == branchLevel){
+                        isShadow = true;
+                    }
+                    drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5, isShadow);
+                    drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5, isShadow);
                 }
                 decrease -= 0.05;
                 drawScalingPeople(decrease);
@@ -507,10 +511,10 @@
 
         }
 
-        function drawAdultTree(startX, startY, adultHeight, branchLevel, branchWidth, angle, dir) {
+        function drawAdultTree(startX, startY, adultHeight, branchLevel, branchWidth, angle, dir, isShadow) {
             var newHeight, newAngle, newBranchLevel, maxBranch = 3,
                 endX, endY, maxAngle = 60 * Math.PI / 180, subBranches;
-
+            var origShadowColor = ctx.shadowColor
             ctx.beginPath();
             ctx.moveTo(startX, startY);
 
@@ -526,12 +530,17 @@
             // expression x >> 0 is used to quickly perform rounding operation
             if (branchLevel <= 2) {
                 ctx.strokeStyle = 'rgb(0,' + (((rand() * 64) + 128) >> 0) + ',0)';
-            }
-            else {
+                
+            }else {
                 ctx.strokeStyle = 'rgb(0,' + (((rand() * 64) + 64) >> 0) + ',20)';
+                
             }
+            // if(isShadow && branchLevel == 1){
+            //     ctx.shadowBlur = 5;
+            //     ctx.shadowColor = treeAdultShadow;
+            // }
             ctx.stroke();
-
+            ctx.shadowColor = origShadowColor;
             newBranchLevel = branchLevel - 1;
 
             // return if go to the end level
@@ -551,7 +560,7 @@
                 */
                 newAngle = angle + rand() * maxAngle - maxAngle * dir;
                 newHeight = adultHeight * (0.6 + rand() * 0.4);
-                drawAdultTree(endX, endY, newHeight, newBranchLevel, branchWidth, newAngle, dir);
+                drawAdultTree(endX, endY, newHeight, newBranchLevel, branchWidth, newAngle, dir, isShadow);
             }
         }
 
@@ -644,7 +653,7 @@
         var dz = 0;
         function drawSplintingPeople() {
             if (timeCount < 2) {
-                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, dz);
+                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, dz, false);
                 ctx.drawImage(walkingImage, timeCir4 * widthFrame, heightFrame * 3, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 setTimeout(function () {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -659,7 +668,7 @@
                     drawSplintingPeople();
                 }, 30 * timeCir + 30);
             } else {
-                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0.5);
+                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0.5, false);
                 ctx.drawImage(walkingImage, widthFrame, heightFrame * 3, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 timeCount = 0;
                 timeCir++;
