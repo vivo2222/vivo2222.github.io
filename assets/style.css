@@ -1,36 +1,70 @@
+:root {
+  --main-book-color: #e91e63;
+  --main-bg-color: #00316b;
+  --main-text-color: #fef5f8;
+  --main-font-family: sans-serif;
+  --main-input-color: #ccc9c9;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body {
+body{
   overflow: hidden;
+  background-color: var(--main-bg-color);
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
-#canvas {
-  background: rgb(45, 110, 42);
-  background: linear-gradient(
-    0deg,
-    rgba(45, 110, 42, 1) 0%,
-    rgba(31, 32, 32, 1) 8%,
-    rgba(118, 149, 176, 1) 100%
-  );
+body > img{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.25;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
+
 #sub_canvas {
   position: absolute;
   top: 0px;
   left: 0px;
 }
-#change-color {
-  background: rgb(59, 125, 59) !important;
-  background: linear-gradient(
-    0deg,
-    rgba(59, 125, 59, 1) 0%,
-    rgba(100, 157, 100, 1) 46%,
-    rgba(143, 190, 143, 1) 75%
-  ) !important;
+#canvas{
+  position: sticky;
+  z-index: 999;
+  backface-visibility: visible;
 }
-
-.hidden {
+.intro_card {
+  width: 50%;
+  height: 90%;
+  background: var(--main-book-color);
+  margin: 2% 25%;
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: all 700ms ease-in-out;
+  -moz-transition: all 700ms ease-in-out;
+  -ms-transition: all 700ms ease-in-out;
+  -o-transition: all 700ms ease-in-out;
+  transition: all 700ms ease-in-out;
+}
+/* .book_title{
+  font-family: 'Dancing Script', cursive;
+  font-size: 50px;
+  color: var(--main-text-color);
+} */
+.hidden{
   position: fixed;
   top: 0;
   bottom: 0;
@@ -40,20 +74,50 @@ body {
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
+  z-index: 9999;
+
 }
-.popup {
+.popup{
   margin: 70px auto;
   padding: 20px;
-  background: #fff;
+  background:var(--main-book-color);
   border-radius: 5px;
   width: 30%;
   position: relative;
   transition: all 5s ease-in-out;
+  z-index: 9999;
+  color: var(--main-text-color);
 }
-
+.card_box{
+  width: 10%;
+  height: 50%;
+  margin: auto;
+  /* background-image: url('img/apple.png'); */
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  z-index: 9999;
+}
+.card_box img{
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+  -ms-transition: all 2s ease-in-out;
+  -o-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+}
 .popup h3 {
   margin: 10px 0;
-  color: rgb(20, 143, 119);
+  color: #06d85f;
 }
 .popup .close_popup {
   position: absolute;
@@ -83,10 +147,13 @@ footer {
   span {
     font-size: 10px;
   }
-  img {
+  footer img {
     width: 60px !important;
   }
   .popup {
     width: 70%;
+  }
+  .card_box{
+    width: 90%;
   }
 }

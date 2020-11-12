@@ -327,11 +327,11 @@
                 var p = getPosition(e);
                 var colorOfPixel = getColorOfPixel(p[0], p[1]);
                 if ((colorOfPixel[0] >= 120) && colorOfPixel[1] == 0 && colorOfPixel[2] == 0) {
-                    $('canvas').css({
+                    $('body').css({
                         cursor: "text",
                         background: "#BBD2C5",
-                        background: "-webkit-linear-gradient(to top, #292E49, #536976, #BBD2C5)",
-                        background: "linear-gradient(to top, #292E49, #536976, #BBD2C5)"
+                        background: "-webkit-linear-gradient(to top, #00316b, #536976, #BBD2C5)",
+                        background: "linear-gradient(to top, #00316b, #536976, #BBD2C5)"
                     });
                     ctx.beginPath();
                     drawGrowingLine(x - x / d, y / 10 - 10 * d, canvas.width / 6, 0);
