@@ -93,6 +93,7 @@
             "story_line7": "cái cây non dần 'lớn khôn', ",
             "story_line8": "vươn mình để kết trái."
         };
+        
         /**
          * people will walk to the middle when the browser have already loaded
          * use sprite image sheet to animate the man
@@ -132,7 +133,6 @@
                 heightTree = 16;
                 branchLevel = 7;
             }
-
         }
         var walkingImage = new Image();
         var h = heightTree;
@@ -196,11 +196,7 @@
             /**
                 ======== STEP 3: Seed germination ========
             */
-            /**
-            * x, y is the begin coord of tree
-            * height is the first height of tree
-            * branchLevel is the number of tre branch will grow
-            */
+            
             setTimeout(function () {
                 setTimeout(function () {
                     drawText(20 * scale, sub_canvas.height / 5, story_line.story_line3, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
