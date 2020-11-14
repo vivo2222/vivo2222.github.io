@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inconsolata:wght@200&family=Roboto:wght@300&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inconsolata:wght@200&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Card</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <title>Greeting card </title>
 </head>
-
 <body>
+    <img src="assets/img/background.jpg" alt="tdtu_background">
+    <div class="intro_card">
+        <div class="font_card page">
+            <div class="border_card">
+                <div class="card_top">
+                    <h1 class="card_name">Nghề giáo</h1>
+                </div>
+                <div class="card_center">
+                    <img src="assets/img/intro_card.png" alt="teacher_and_student">
+                </div>
+                <div class="card_btn">
+                    <button id="open_btn" class="open_btn">Mở ra nào !</button>
+                </div>
+            </div>
+        </div>
+        <div class="back_card page"></div>
+    </div>
     <canvas id="canvas"></canvas>
     <canvas id="sub_canvas"></canvas>
-    <div id="popup" class="hidden">
+    <div id="popup_box" class="hidden">
         <div class="popup">
             <h3>Thật tuyệt !!</h3>
             <a class="close_popup">&times;</a>
@@ -31,16 +45,15 @@
         </div>
     </div>
     <footer style="bottom: 20px; right: 0; 
-    display: flex; justify-content: flex-end;
-    width: 100%; align-items: center; ">
+                display: flex; justify-content: flex-end;
+                width: 100%; align-items: center; ">
         <div style="text-align: right;
-    line-height: 1.25; font-weight: bold;
-    font-size: 18px">
+                    line-height: 1.25; font-weight: bold;
+                    font-size: 18px">
             <span id="icon-name" style="display: block;">Võ Tường Vi</span>
             <span style="display: block;">519H0098</span>
         </div>
-        <img style="width: 120px;
-    height: auto;" src="https://iconclub.github.io/assets/iconLogo.png" alt="ICON">
+        <img style="width: 120px; height: auto;" src="https://iconclub.github.io/assets/iconLogo.png" alt="ICON">
     </footer>
 </body>
 
@@ -65,6 +78,7 @@
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
         var sub_ctx = sub_canvas.getContext("2d");
+        
 
         var rand = Math.random;
 
@@ -120,262 +134,297 @@
             }
 
         }
-        /**
-            ======== STEP 1: DRAW A WALKING MAN ========
-        */
         var walkingImage = new Image();
-        setTimeout(function () {
-            drawText(20 * scale, sub_canvas.height / 5, story_line.story_line1, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
-            setTimeout(function () {
-                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line2, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
-                sub_ctx.clearRect(0, 0, sub_canvas.width, sub_canvas.height);
-            }, 6000);
-            walkingImage.src = '/assets/img/man.png';
-            walkingImage.onload = function () {
-                drawWalkingPeople();
-            }
-        }, 500);
-        /**
-            ======== STEP 2: Teaching knowledge seeds ========
-        */
-        setTimeout(function () {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            setTimeout(function () {
-                drawPlantingPeople();
-            }, 10);
-        }, canvas.width + timeScale);
-
-        /**
-            ======== STEP 3: Seed germination ========
-        */
-        /**
-         * x, y is the begin coord of tree
-         * height is the first height of tree
-         * branchLevel is the number of tre branch will grow
-        */
-        setTimeout(function () {
-            setTimeout(function () {
-                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line3, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
-            }, 2000);
-            var i = 10;
-            var loop1 = setInterval(function () {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (i == 1) {
-                    clearInterval(loop1);
-                }
-                drawTinyTree(x, y, heightTree * 1.5 * scale, Math.PI / i);
-                drawWalkingPeople();
-                i--;
-            }, 200);
-        }, canvas.width + timeScale + 13 * 500);
-
-        /**
-            ======== STEP 4: Watering and fertilizer (knowledge) ========
-        */
-        setTimeout(function () {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawWateringPeople();
-        }, canvas.width + timeScale + 22 * 500);
-
-        /**
-            ======== STEP 5: The tree does not grow up straight (negative) ========
-        */
         var h = heightTree;
         var j;
-        setTimeout(function () {
-            j = 0;
-            var time = 3;
-            var loop2 = setInterval(function () {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (j == branchLevel - 2) {
-                    clearInterval(loop2);
-                }
-                /** dir = 0 tilts the tree in one direction */
-                for (var i = 0; i < time; i++) {
-                    drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0, false);
+        $('#open_btn').one('click', function(){
+            $('body').css({
+                background: "rgb(45, 110, 42)",
+                background: "linear-gradient( 0deg,rgba(45, 110, 42, 1) 0%,rgba(31, 32, 32, 1) 8%,rgba(118, 149, 176, 1) 100%)"
+            });
+            $('body > img').css({
+                opacity: "0.1"
+            });
+            $('.intro_card').css({
+                'transform': 'translate(60%, -50%) scale(2)',
+                visibility: 'hidden',
+                opacity: '0'
+            });
+            $('.intro_card').css({
+                'transform-style': 'preserve-3d'
+
+            });
+            $('.font_card').css({
+                'transform': ' skewY(3deg) rotateY(-160deg) ',
+            });
+            $('.back_card').css({
+                'transform': ' skewY(-3deg) rotateY(-20deg)'
+            });
+            $('.intro_card .font_card .border_card').css({
+                display : "none"
+            });
+            $('body > img').attr("src","assets/img/tree-bg.jpg");
+            
+            init();
+        });
+
+        function init(){
+            /**
+                ======== STEP 1: DRAW A WALKING MAN ========
+            */
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line1, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                setTimeout(function () {
+                    drawText(20 * scale, sub_canvas.height / 5, story_line.story_line2, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                    sub_ctx.clearRect(0, 0, sub_canvas.width, sub_canvas.height);
+                }, 6000);
+                walkingImage.src = '/assets/img/man.png';
+                walkingImage.onload = function () {
                     drawWalkingPeople();
                 }
-                h += 5;
-                j++;
-            }, 250);
-        }, canvas.width + timeScale + 44 * 500);
-
-        /**
-            ======== STEP 6: The man splints tree (right direction) ========
-        */
-        setTimeout(function () {
-            drawText(20 * scale, sub_canvas.height / 5, story_line.story_line4, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+            }, 500);
+            /**
+                ======== STEP 2: Teaching knowledge seeds ========
+            */
             setTimeout(function () {
-                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line5, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
-            }, 2000);
-            setTimeout(function () {
-                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line6, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
-            }, 5000);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawSplintingPeople();
-        }, canvas.width + timeScale + 49 * 500);
-
-        /**
-            ======== STEP 7: The tree grows into a big tree (Adult) ========
-        */
-        setTimeout(function () {
-            j = 0;
-            var time = 5 * scale;
-            var decrease = 1;
-            var isShadow = false;
-            var loop2 = setInterval(function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (j == branchLevel) {
-                    clearInterval(loop2);
-                }
-                /** draw 2 tree to avoid the case the tree grows in only 1 dir*/
-                for (var i = 0; i < time; i++) {
-                    if(j == branchLevel){
-                        isShadow = true;
-                    }
-                    drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5, isShadow);
-                    drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5, isShadow);
-                }
-                decrease -= 0.05;
-                drawScalingPeople(decrease);
-                h += 7;
-                j++;
-            }, 250);
-        }, canvas.width + timeScale + 61 * 500);
+                setTimeout(function () {
+                    drawPlantingPeople();
+                }, 10);
+            }, canvas.width + timeScale);
 
-        /**
-            ======== STEP 8: Fruit trees (get achievements) ========
-        */
-        setTimeout(function () {
-            drawText(20 * scale, sub_canvas.height / 5, story_line.story_line7, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+            /**
+                ======== STEP 3: Seed germination ========
+            */
+            /**
+            * x, y is the begin coord of tree
+            * height is the first height of tree
+            * branchLevel is the number of tre branch will grow
+            */
             setTimeout(function () {
-                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line8, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
-            }, 2000);
-            drawApple(45, 0.6, 3 * scale);
-            drawApple(83, 0.8, 3 * scale);
-            drawApple(50, 0.5, 3 * scale);
-            drawApple(52, 0.7, 3 * scale);
-            drawApple(75, 0.7, 3 * scale);
-            drawApple(145, 0.6, 3 * scale);
-            drawApple(113, 1, 3 * scale);
-            drawApple(90, 0.5, 3 * scale);
-            drawApple(102, 0.7, 3 * scale);
-            drawApple(125, 0.7, 3 * scale);
-            drawApple(115, 0.4, 3 * scale);
-        }, canvas.width + timeScale + 72 * 500);
-        setTimeout(function () {
-            drawApple(45, 0.6, 4 * scale);
-            drawApple(83, 0.8, 4 * scale);
-            drawApple(50, 0.5, 4 * scale);
-            drawApple(52, 0.7, 4 * scale);
-            drawApple(75, 0.7, 4 * scale);
-            drawApple(145, 0.6, 4 * scale);
-            drawApple(113, 1, 4 * scale);
-            drawApple(90, 0.5, 4 * scale);
-            drawApple(102, 0.7, 4 * scale);
-            drawApple(125, 0.7, 4 * scale);
-            drawApple(115, 0.4, 4 * scale);
-        }, canvas.width + timeScale + 77 * 500);
-        setTimeout(function () {
-            drawApple(45, 0.6, 5 * scale);
-            drawApple(83, 0.8, 5 * scale);
-            drawApple(50, 0.5, 5 * scale);
-            drawApple(52, 0.7, 5 * scale);
-            drawApple(75, 0.7, 5 * scale);
-            drawApple(145, 0.6, 5 * scale);
-            drawApple(113, 1, 5 * scale);
-            drawApple(90, 0.5, 5 * scale);
-            drawApple(102, 0.7, 5 * scale);
-            drawApple(125, 0.7, 5 * scale);
-            drawApple(115, 0.4, 5 * scale);
-        }, canvas.width + timeScale + 81 * 500);
-        setTimeout(function () {
-            drawApple(45, 0.6, 6 * scale);
-            drawApple(83, 0.8, 6 * scale);
-            drawApple(50, 0.5, 6 * scale);
-            drawApple(52, 0.7, 6 * scale);
-            drawApple(75, 0.7, 6 * scale);
-            drawApple(145, 0.6, 6 * scale);
-            drawApple(113, 1, 6 * scale);
-            drawApple(90, 0.5, 6 * scale);
-            drawApple(102, 0.7, 6 * scale);
-            drawApple(125, 0.7, 6 * scale);
-            drawApple(115, 0.4, 6 * scale);
-        }, canvas.width + timeScale + 86 * 500);
+                setTimeout(function () {
+                    drawText(20 * scale, sub_canvas.height / 5, story_line.story_line3, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                }, 2000);
+                var i = 10;
+                var loop1 = setInterval(function () {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    if (i == 1) {
+                        clearInterval(loop1);
+                    }
+                    drawTinyTree(x, y, heightTree * 1.5 * scale, Math.PI / i);
+                    drawWalkingPeople();
+                    i--;
+                }, 200);
+            }, canvas.width + timeScale + 13 * 500);
 
-        /**
-            ======== STEP 9: Harvest (receive greetings, thanks) ========
-        */
-        setTimeout(function () {
-            $('#sub_canvas').css({
-                display: 'none'
-            });
-            $('#popup').css({
-                visibility: 'visible',
-                opacity: '1'
-            });
-            $('.close_popup').on('click', function () {
-                $('#popup').css({
-                    visibility: 'hidden',
-                    opacity: '0'
+            /**
+                ======== STEP 4: Watering and fertilizer (knowledge) ========
+            */
+            setTimeout(function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawWateringPeople();
+            }, canvas.width + timeScale + 22 * 500);
+
+            /**
+                ======== STEP 5: The tree does not grow up straight (negative) ========
+            */
+            
+            setTimeout(function () {
+                j = 0;
+                var time = 3;
+                var loop2 = setInterval(function () {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    if (j == branchLevel - 2) {
+                        clearInterval(loop2);
+                    }
+                    /** dir = 0 tilts the tree in one direction */
+                    for (var i = 0; i < time; i++) {
+                        drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0);
+                        drawWalkingPeople();
+                    }
+                    h += 5;
+                    j++;
+                }, 250);
+            }, canvas.width + timeScale + 44 * 500);
+
+            /**
+                ======== STEP 6: The man splints tree (right direction) ========
+            */
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line4, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                setTimeout(function () {
+                    drawText(20 * scale, sub_canvas.height / 5, story_line.story_line5, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                }, 2000);
+                setTimeout(function () {
+                    drawText(20 * scale, sub_canvas.height / 5, story_line.story_line6, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                }, 5000);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawSplintingPeople();
+            }, canvas.width + timeScale + 49 * 500);
+
+            /**
+                ======== STEP 7: The tree grows into a big tree (Adult) ========
+            */
+            setTimeout(function () {
+                j = 0;
+                var time = 5 * scale;
+                var decrease = 1;
+                var loop2 = setInterval(function () {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    if (j == branchLevel) {
+                        clearInterval(loop2);
+                    }
+                    /** draw 2 tree to avoid the case the tree grows in only 1 dir*/
+                    for (var i = 0; i < time; i++) {
+                        drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5);
+                        drawAdultTree(x, y, h, j + 3, 7 * scale, -Math.PI / 2, 0.5);
+                    }
+                    decrease -= 0.05;
+                    drawScalingPeople(decrease);
+                    h += 7;
+                    j++;
+                }, 250);
+            }, canvas.width + timeScale + 61 * 500);
+
+            /**
+                ======== STEP 8: Fruit trees (get achievements) ========
+            */
+            setTimeout(function () {
+                drawText(20 * scale, sub_canvas.height / 5, story_line.story_line7, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                setTimeout(function () {
+                    drawText(20 * scale, sub_canvas.height / 5, story_line.story_line8, "Itim", 15, 0, textStoryColor, sub_canvas.width, sub_ctx);
+                }, 2000);
+                drawApple(45, 0.6, 3 * scale);
+                drawApple(83, 0.8, 3 * scale);
+                drawApple(50, 0.5, 3 * scale);
+                drawApple(52, 0.7, 3 * scale);
+                drawApple(75, 0.7, 3 * scale);
+                drawApple(145, 0.6, 3 * scale);
+                drawApple(113, 1, 3 * scale);
+                drawApple(90, 0.5, 3 * scale);
+                drawApple(102, 0.7, 3 * scale);
+                drawApple(125, 0.7, 3 * scale);
+                drawApple(115, 0.4, 3 * scale);
+            }, canvas.width + timeScale + 72 * 500);
+            setTimeout(function () {
+                drawApple(45, 0.6, 4 * scale);
+                drawApple(83, 0.8, 4 * scale);
+                drawApple(50, 0.5, 4 * scale);
+                drawApple(52, 0.7, 4 * scale);
+                drawApple(75, 0.7, 4 * scale);
+                drawApple(145, 0.6, 4 * scale);
+                drawApple(113, 1, 4 * scale);
+                drawApple(90, 0.5, 4 * scale);
+                drawApple(102, 0.7, 4 * scale);
+                drawApple(125, 0.7, 4 * scale);
+                drawApple(115, 0.4, 4 * scale);
+            }, canvas.width + timeScale + 77 * 500);
+            setTimeout(function () {
+                drawApple(45, 0.6, 5 * scale);
+                drawApple(83, 0.8, 5 * scale);
+                drawApple(50, 0.5, 5 * scale);
+                drawApple(52, 0.7, 5 * scale);
+                drawApple(75, 0.7, 5 * scale);
+                drawApple(145, 0.6, 5 * scale);
+                drawApple(113, 1, 5 * scale);
+                drawApple(90, 0.5, 5 * scale);
+                drawApple(102, 0.7, 5 * scale);
+                drawApple(125, 0.7, 5 * scale);
+                drawApple(115, 0.4, 5 * scale);
+            }, canvas.width + timeScale + 81 * 500);
+            setTimeout(function () {
+                drawApple(45, 0.6, 6 * scale);
+                drawApple(83, 0.8, 6 * scale);
+                drawApple(50, 0.5, 6 * scale);
+                drawApple(52, 0.7, 6 * scale);
+                drawApple(75, 0.7, 6 * scale);
+                drawApple(145, 0.6, 6 * scale);
+                drawApple(113, 1, 6 * scale);
+                drawApple(90, 0.5, 6 * scale);
+                drawApple(102, 0.7, 6 * scale);
+                drawApple(125, 0.7, 6 * scale);
+                drawApple(115, 0.4, 6 * scale);
+            }, canvas.width + timeScale + 86 * 500);
+
+            /**
+                ======== STEP 9: Harvest (receive greetings, thanks) ========
+            */
+            setTimeout(function () {
+                $('#sub_canvas').css({
+                    display: 'none'
                 });
-            });
-            $('canvas').css({
-                cursor: "url('/assets/img/picking_pole.png') 126 3,auto"
-            });
-            $('canvas').on('click', function (e) {
-                var p = getPosition(e);
-                var colorOfPixel = getColorOfPixel(p[0], p[1]);
-                if ((colorOfPixel[0] >= 120) && colorOfPixel[1] == 0 && colorOfPixel[2] == 0) {
-                    $('body').css({
-                        cursor: "text",
-                        background: "#BBD2C5",
-                        background: "-webkit-linear-gradient(to top, #00316b, #536976, #BBD2C5)",
-                        background: "linear-gradient(to top, #00316b, #536976, #BBD2C5)"
+                $('#popup_box').css({
+                    visibility: 'visible',
+                    opacity: '1'
+                });
+                $('.close_popup').on('click', function () {
+                    $('#popup_box').css({
+                        visibility: 'hidden',
+                        opacity: '0'
                     });
-                    ctx.beginPath();
-                    drawGrowingLine(x - x / d, y / 10 - 10 * d, canvas.width / 6, 0);
-                    drawGrowingLine(x - x / d - 10, y / 10 - 10 * d + 20, canvas.width / 4, 0);
-                    drawGrowingLine(x - x / d + 10, y / 10 - 10 * d - 10, 6 * canvas.height / 10, 90);
-                    drawGrowingLine(x - x / d + 20, y / 10 - 10 * d + 40, canvas.height / 3, 90);
-                    drawGrowingLine(x + x / d, y + 10 * d - 70, canvas.width / 3, 180);
-                    drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
-                    drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
-                    setTimeout(function () {
-                        drawText(x, canvas.height * scale / 6, greeting_word, "Dancing Script", 25, 0.5, textGreetingColor, 4 * canvas.width / 5, ctx);
+                    $('body').css({
+                        cursor: "url('/assets/img/picking_pole.png') 126 3,auto"
+                    });
+                });
+                
+                $('canvas').on('click', function (e) {
+                    var p = getPosition(e);
+                    var colorOfPixel = getColorOfPixel(p[0], p[1]);
+                    if ((colorOfPixel[0] >= 120) && colorOfPixel[1] == 0 && colorOfPixel[2] == 0) {
+                        $('canvas').css({
+                            cursor: "pointer"
+                        });
+                        $('body').css({
+                            cursor: "text",
+                            background: "#BBD2C5",
+                            background: "-webkit-linear-gradient(to top, #292E49, #536976, #BBD2C5)",
+                            background: "linear-gradient(to top, #292E49, #536976, #BBD2C5)"
+                        });
+                        
+                        ctx.beginPath();
+                        drawGrowingLine(x - x / d, y / 10 - 10 * d, canvas.width / 6, 0);
+                        drawGrowingLine(x - x / d - 10, y / 10 - 10 * d + 20, canvas.width / 4, 0);
+                        drawGrowingLine(x - x / d + 10, y / 10 - 10 * d - 10, 6 * canvas.height / 10, 90);
+                        drawGrowingLine(x - x / d + 20, y / 10 - 10 * d + 40, canvas.height / 3, 90);
+                        drawGrowingLine(x + x / d, y + 10 * d - 70, canvas.width / 3, 180);
+                        drawGrowingLine(x + x / d - 20, y + 10 * d - 10, canvas.width / 5, -90);
+                        drawGrowingLine(x + x / d - 10, y + 10 * d - 30, canvas.width / 4, -90);
                         setTimeout(function () {
-                            ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            ctx.fillStyle = textGreetingColor;
-                            ctx.shadowOffsetX = 3;
-                            ctx.shadowOffsetY = 3;
-                            ctx.shadowBlur = 4;
-                            ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-                            drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 50, 0.5, textGreetingColor, 3 * canvas.width / 4, ctx);
+                            drawText(x, canvas.height * scale / 6, greeting_word, "Dancing Script", 25, 0.5, textGreetingColor, 4 * canvas.width / 5, ctx);
                             setTimeout(function () {
-                                drawRandFireworks();
-                                drawRandFireworks();
-                                drawRandFireworks();
-                                drawRandFireworks();
-                            }, 2000);
-                            $('canvas').css({
-                                cursor: "crosshair"
-                            });
-                            $('canvas').on('click', function (e) {
-                                p = getPosition(e);
-                                if (isAllowedDrawFireWorks(p[0], p[1])) {
-                                    drawDeFireworks(p[0], p[1]);
-                                }
-                            });
-                        }, canvas.width + timeScale + 25 * 500);
-                    }, 5 * 500);
-                }
-            });
-        }, canvas.width + timeScale + 90 * 500);
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                ctx.fillStyle = textGreetingColor;
+                                ctx.shadowOffsetX = 6;
+                                ctx.shadowOffsetY = 7;
+                                ctx.shadowBlur = 7;
+                                ctx.shadowColor = "rgb(32, 72, 73)";
+                                drawText(x, y / 2, "Happy Vietnamese Teacher's Day !!", "Marck Script", 60, 0.5, textGreetingColor, 3 * canvas.width / 4, ctx);
+                                setTimeout(function () {
+                                    drawRandFireworks();
+                                    drawRandFireworks();
+                                    drawRandFireworks();
+                                    drawRandFireworks();
+                                }, 2000);
+                                $('canvas').css({
+                                    cursor: "crosshair"
+                                });
+                                $('canvas').on('click', function (e) {
+                                    p = getPosition(e);
+                                    if (isAllowedDrawFireWorks(p[0], p[1])) {
+                                        drawDeFireworks(p[0], p[1]);
+                                    }
+                                });
+                            }, canvas.width + timeScale + 23 * 500);
+                        }, 5 * 500);
+                    }
+                });
+            }, canvas.width + timeScale + 90 * 500);
+        }
         function isAllowedDrawFireWorks(x, y) {
-            return (x < canvas.width / 15 && getColorOfPixel(x + 30, y)[0] != 255)
-                || (x > 14 * canvas.width / 15 && getColorOfPixel(x - 30, y)[0] != 255)
-                || (y < 3 * canvas.height / 10 && getColorOfPixel(x, y + 30)[0] != 255)
-                || (y > 7 * canvas.height / 10 && getColorOfPixel(x, y - 30)[0] != 255);
+            return (x < canvas.width / 15 && getColorOfPixel(x + 30, y)[1] != 255)
+                || (x > 14 * canvas.width / 15 && getColorOfPixel(x - 30, y)[1] != 255)
+                || (y < 3 * canvas.height / 10 && getColorOfPixel(x, y + 30)[1] != 255)
+                || (y > 7 * canvas.height / 10 && getColorOfPixel(x, y - 30)[1] != 255);
         }
         function drawText(startX, startY, text, fontStyle, fontSize, textAlign, color, textW, canvasContext) {
             var startXN, startYN, textN, stepX, stepY, countEndLine;
@@ -419,7 +468,7 @@
                 j++;
             }, 50);
         }
-
+        
         function drawApple(angle, distance, radius) {
             ctx.beginPath();
             var startX, startY;
@@ -511,10 +560,10 @@
 
         }
 
-        function drawAdultTree(startX, startY, adultHeight, branchLevel, branchWidth, angle, dir, isShadow) {
+        function drawAdultTree(startX, startY, adultHeight, branchLevel, branchWidth, angle, dir) {
             var newHeight, newAngle, newBranchLevel, maxBranch = 3,
                 endX, endY, maxAngle = 60 * Math.PI / 180, subBranches;
-            var origShadowColor = ctx.shadowColor
+            var originShadowColor = ctx.shadowColor
             ctx.beginPath();
             ctx.moveTo(startX, startY);
 
@@ -526,21 +575,17 @@
             ctx.lineJoin = 'round';
             ctx.lineTo(endX, endY);
 
-            // if the branchLevel is not more than 2 (we are at the top of the tree) change the color to a lighter
-            // expression x >> 0 is used to quickly perform rounding operation
+            /** 
+             * if the branchLevel is not more than 2 (we are at the top of the tree) change the color to a lighter
+             * expression x >> 0 is used to quickly perform rounding operation
+             */
             if (branchLevel <= 2) {
                 ctx.strokeStyle = 'rgb(0,' + (((rand() * 64) + 128) >> 0) + ',0)';
-                
             }else {
                 ctx.strokeStyle = 'rgb(0,' + (((rand() * 64) + 64) >> 0) + ',20)';
-                
             }
-            // if(isShadow && branchLevel == 1){
-            //     ctx.shadowBlur = 5;
-            //     ctx.shadowColor = treeAdultShadow;
-            // }
             ctx.stroke();
-            ctx.shadowColor = origShadowColor;
+            ctx.shadowColor = originShadowColor;
             newBranchLevel = branchLevel - 1;
 
             // return if go to the end level
@@ -560,7 +605,7 @@
                 */
                 newAngle = angle + rand() * maxAngle - maxAngle * dir;
                 newHeight = adultHeight * (0.6 + rand() * 0.4);
-                drawAdultTree(endX, endY, newHeight, newBranchLevel, branchWidth, newAngle, dir, isShadow);
+                drawAdultTree(endX, endY, newHeight, newBranchLevel, branchWidth, newAngle, dir);
             }
         }
 
@@ -653,7 +698,7 @@
         var dz = 0;
         function drawSplintingPeople() {
             if (timeCount < 2) {
-                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, dz, false);
+                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, dz);
                 ctx.drawImage(walkingImage, timeCir4 * widthFrame, heightFrame * 3, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 setTimeout(function () {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -668,7 +713,7 @@
                     drawSplintingPeople();
                 }, 30 * timeCir + 30);
             } else {
-                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0.5, false);
+                drawAdultTree(x, y, h, j + 4, 7 * scale, -Math.PI / 2, 0.5);
                 ctx.drawImage(walkingImage, widthFrame, heightFrame * 3, widthFrame, heightFrame, x_coord * move, y - heightFrame * scale, widthFrame * scale, heightFrame * scale);
                 timeCount = 0;
                 timeCir++;
